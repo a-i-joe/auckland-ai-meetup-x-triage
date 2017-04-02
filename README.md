@@ -20,7 +20,7 @@ This could potentially have huge implications in emergency situations around the
 
 **1.**
 
-- Percentage of normal x-rays identified when false-negative tolerance is set to `0`. That's a mouthful, so let's call it the **'safe set**'.  
+- Percentage of normal x-rays identified when false-negative tolerance approaches `0`. That's a mouthful, so let's call it the **'safe set**'.  
   *What proportion of the healthy people can we filter from triage, without accidentally clearing people who need to be seen?*
 - Area Under the Curve  
   *How good, overall, is the model for varied false negative/positive tolerance settings?*
@@ -56,7 +56,7 @@ Dr. Tarr hopes to present our findings to the Radiological Society of North Amer
 
 ## How to contribute
 
-Please submit your work to this repository using the standard [github flow](https://guides.github.com/introduction/flow/).
+Please submit your work to this repository using the standard [github flow](https://guides.github.com/introduction/flow/) (fork and pull-request).
 
 ### Guidelines
 
@@ -74,5 +74,5 @@ The repository uses the MIT license, which is permissive, but requires attributi
 
 ### Communication
 
-- Use the [meetup board](https://www.meetup.com/Auckland-AI-Meetup/messages/boards/) for discussing experiments and ideas.
-- You can [message Greg Tarr through meetup.com](https://www.meetup.com/Auckland-AI-Meetup/members/115831142/) to consult on the project from a medical perspective.
+- Use the github issues in this repository, or the [meetup board](https://www.meetup.com/Auckland-AI-Meetup/messages/boards/), for discussing experiments and ideas.
+- You can [message Dr Greg Tarr through meetup.com](https://www.meetup.com/Auckland-AI-Meetup/members/115831142/) to consult on the project from a medical perspective.
