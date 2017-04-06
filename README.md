@@ -39,6 +39,9 @@ In total, there are around 8,000 chest x-ray films, which have been completely d
 Larger dataset:  
 https://openi.nlm.nih.gov/imgs/collections/NLMCXR_dcm.tgz
 
+For this dataset, the labels are unfortunately not included in the download. They're available through a restful endpoint, e.g.  https://openi.nlm.nih.gov/retrieve.php?query=&coll=iu
+They limit the queries to 30 results at a time, so it would be helpful to create a tool which can iterate to retreive all the labels for a desired set of images. Contributions of a tool which we can all reuse to get around this problem would be very welcome. Just submit it as a pull request into this repo. There's a readme on the restful API, here: https://openi.nlm.nih.gov/services.php?it=xg#params
+
 Smaller dataset 1:  
 https://openi.nlm.nih.gov/imgs/collections/NLM-MontgomeryCXRSet.zip  
 Smaller dataset 2:  
