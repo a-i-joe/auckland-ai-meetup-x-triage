@@ -68,12 +68,10 @@ Please submit your work to this repository using the standard [github flow](http
 
 - Add a folder for your experiment.
 - Submit the full code (or steps) required to repeat your experiment.
-- Wherever possible, provide infrastructure requirements. For example; machine specifications, software required, python version, etc. Ideally, provide infrastructure as code for spinning up an identical environment in a mainstream cloud environment (e.g. terraform/cloudformation defining an AWS setup with packer/vagrant/a script/etc for installing the right software).
+- Wherever possible, provide infrastructure requirements. For example; machine specifications, software required, python version, etc. Ideally, provide infrastructure as code for spinning up an identical environment in a mainstream cloud environment (e.g. terraform/cloudformation defining an AWS setup with packer/vagrant/a script/etc for installing the right software). The overriding principal is to describe everything needed to reproduce your results.
 - Please review and consider accepting pull requests from others to improve your experiments. This is a collaboration.
 - Include a README.md file in your folder, explaining the experiment and your results so far, and keep it updated as the experiment improves.
 - Also describe your process for splitting training, validation and testing data. Final solutions will need to show due-diligence, such as reserved testing data and 10 × 10-fold validation, however don't let that scare you off having a try. We can refine the experiments together.
-
-The overriding principal is to describe everything needed to reproduce your results.
 
 ### License
 
