@@ -36,20 +36,23 @@ Dr. Greg Tarr has commended the following data sources to us.
 
 In total, there are around 8,000 chest x-ray films, which have been completely de-identified and have both the de-identified clinical reports and have been labelled as "normal" or having other findings.
 
-Larger dataset:  
+The image files are in DICOM format, which is JPEG + a medical header with scan information. These images can be viewed in a DICOM viewer like [RadiAnt (Win)](www.radiantviewer.com) or [Osirix (Mac)](www.osirix-viewer.com).
+
+FAQ: https://openi.nlm.nih.gov/faq.php
+
+### Larger dataset:  
 https://openi.nlm.nih.gov/imgs/collections/NLMCXR_dcm.tgz
 
 For this dataset, the labels are unfortunately not included in the download. They're available through a restful endpoint, e.g.  https://openi.nlm.nih.gov/retrieve.php?query=&coll=iu
 They limit the queries to 30 results at a time, so it would be helpful to create a tool which can iterate to retreive all the labels for a desired set of images. Contributions of a tool which we can all reuse to get around this problem would be very welcome. Just submit it as a pull request into this repo. There's a readme on the restful API, here: https://openi.nlm.nih.gov/services.php?it=xg#params
 
-Smaller dataset 1:  
-https://openi.nlm.nih.gov/imgs/collections/NLM-MontgomeryCXRSet.zip  
-Smaller dataset 2:  
+### Smaller dataset 1:
+
+https://openi.nlm.nih.gov/imgs/collections/NLM-MontgomeryCXRSet.zip
+
+### Smaller dataset 2:
+
 https://openi.nlm.nih.gov/imgs/collections/ChinaSet_AllFiles.zip
-
-The image files are in DICOM format, which is JPEG + a medical header with scan information. These images can be viewed in a DICOM viewer like [RadiAnt (Win)](www.radiantviewer.com) or [Osirix (Mac)](www.osirix-viewer.com).
-
-FAQ: https://openi.nlm.nih.gov/faq.php
 
 ## Delivering our findings
 
