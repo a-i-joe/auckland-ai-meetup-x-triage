@@ -1,5 +1,5 @@
-/* Program to find labels for x-ray data for Auckland AI Meetup using Jaunt web-scraping
- * package */
+/* Program to find labels for x-ray data for Auckland AI Meetup using Java version 1.8
+ * and the Jaunt web-scraping package */
 
 
 import java.io.IOException;
