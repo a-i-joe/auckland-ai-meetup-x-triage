@@ -72,6 +72,7 @@ Please submit your work to this repository using the standard [github flow](http
 - Please review and consider accepting pull requests from others to improve your experiments. This is a collaboration.
 - Include a README.md file in your folder, explaining the experiment and your results so far, and keep it updated as the experiment improves.
 - Also describe your process for splitting training, validation and testing data. Final solutions will need to show due-diligence, such as reserved testing data and 10 × 10-fold validation, however don't let that scare you off having a try. We can refine the experiments together.
+- Please don't commit the actual data to the repository. Rather, explain which datasets to use and how to arrange them for your solution.
 
 ### License
 
