@@ -1,6 +1,6 @@
 This is a java app I wrote to get the metadata for the larger image set and make the labels.  I wrote it with java 1.8 and the Jaunt web scraping and JSON querying api.  To use it download the GetXRayDataLabels source code and get the free monthly trial of the Jaunt api from http://jaunt-api.com/download.htm.  This api is not available on Maven but is very easy to learn and use.  Extract the jaunt files and copy the .jar package into the same directory as the GetXRayDataLabels source code.  
 
-When you compile and run the app it will send 249 queries to the website, download 7470 records, and create three data files.  
+When you compile and run the app it will send 249 queries to the website, download 7470 records, and create three data files.  It took my i3-5005U CPU with 4Gb RAM and fiber internet just a few minutes.
 
 The small csv file is just the record number, large image filename, and positive/negative label for each record.  I hope that this format will be the easiest way to get the labels into your models and start training.
 
