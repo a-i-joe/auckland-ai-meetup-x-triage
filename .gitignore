@@ -1,3 +1,8 @@
+XRayData.json
+XRayLabels.csv
+XRayLabelsDetailed.json
+jaunt1.2.8.jar
+GetXRayDataLabels.class
 *.tmp
 *.temp
 *.log
