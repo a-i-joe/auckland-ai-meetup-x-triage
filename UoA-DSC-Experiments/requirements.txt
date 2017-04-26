@@ -1,0 +1,11 @@
+numpy
+scipy
+matplotlib
+seaborn
+h5py
+scikit-learn
+dicom
+keras==2.0.3
+tensorflow
+
+
