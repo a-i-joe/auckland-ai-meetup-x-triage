@@ -11,7 +11,14 @@ So far, it only trains on the two smaller datasets. I did load the large DICOM d
 
 The data has a lot of other issues as well, such as multiple x-ray views(side-on vs front-on) that have incorrect labels in the DICOM file header.
 
-The model was trained on a gtx970 with a pentium g4400, and took <1 second per epoch. It's probably small enough to train on CPU.
+### Implementation details
+Training was done on a gtx970 with a pentium g4400, and took less than a second per epoch - probably fast enough to run on CPU.
+The model is a very simple, very small convolutional neural net. The first conv layer has 16 7x7 filters convolved with stride 3, the second has 16 3x3 filters, both have ReLU nonlinearities. Output is a single sigmoid unit and dropout is used to prevent overfitting. The CNN has binary cross entropy between its outputs and the targets(normal=0,abnormal=1)  as a loss function and is trained using the [adam](https://arxiv.org/abs/1412.6980) optimizer with a learning rate of 0.001. I spent very little time on hyperparameter optimization so this architecture could easily be improved.
+
+ 10x10 fold cross validation was done by splitting all 802 examples into 9 folds of 10 and 1 of 12. Each fold was used once for cross validation while the model trained on the rest of the dataset, and the neural net's weights/biases were initialised to the exact same values for each fold. Validation set ROC and safe set % were recorded for each fold, see k_fold_crossvalidation in util.py for details.
+
+Safe set % was calculated by incrementing a 'threshold' from 0, finding the true negative/false negative rates of the model at that threshold, stopping when the number of false negatives was greater than a certain tolerance. See safeset_percent in util.py for details.
+
 
 ## Results
 Running 10x10-fold cross validation it averages an auc of 0.85 ± 0.07. Here is an example of what the roc curves look like:
