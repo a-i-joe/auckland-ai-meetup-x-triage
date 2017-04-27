@@ -3,7 +3,7 @@
 To get the ball rolling, here's the code for our experiments so far. It's more a proof of concept to build on than a finished product.
 Includes scripts to preprocess the data and train a (very) basic convolutional neural network to classify x-rays into "normal" or "abnormal", and utils for running cross validation and finding auc.
 
-## Details
+## Limitations
 So far, it only trains on the two smaller datasets. I did load the large DICOM dataset and the labels from the scraper, but was unable to get the same model to learn anything - performed no differently to random labels. I think this is because either:
 - a) Something is wrong with my code to load data and labels - the functions for loading are still in prepro.py
 - b) Something went wrong with Robin's scraper
@@ -18,11 +18,13 @@ The model is a very simple, very small convolutional neural net. The first conv 
  10x10 fold cross validation was done by splitting all 802 examples into 9 folds of 10 and 1 of 12. Each fold was used once for cross validation while the model trained on the rest of the dataset, and the neural net's weights/biases were initialised to the exact same values for each fold. Validation set ROC and safe set % were recorded for each fold, see k_fold_crossvalidation in util.py for details.
 
 Safe set % was calculated by incrementing a 'threshold' from 0, finding the true negative/false negative rates of the model at that threshold, stopping when the number of false negatives was greater than a certain tolerance. See safeset_percent in util.py for details.
+If you have any questions, feel free to message me on the meetup board(name: Soren Bouma) or open an issue.
 
 
 ## Results
 Running 10x10-fold cross validation it averages an auc of 0.85 ± 0.07. Here is an example of what the roc curves look like:
 ![roc](images/figure_1.png)
+
 Estimating the safe set % is difficult and unreliable when there is so little data. The model filtered out on average 27% of normal x-rays while getting a single false negative(out of 80 val examples). This was tested with 10 way cross validation, and there was a lot of variance in safe set% across different splits - 10% to 65%.
 
 This probably isn't good enough to be useful yet, but it's a pretty decent first step considering this is only using a tenth of the avaliable data and the model trains in ~8 seconds.
