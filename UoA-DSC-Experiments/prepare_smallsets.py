@@ -2,7 +2,7 @@ from prepro import *
 import dill as pickle
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument("--res",nargs="+",type=int,help="desired reolution of images")
+parser.add_argument("--res",nargs="+",type=int,help="desired reolution of images",default =[256,256])
 parser.add_argument("--dir",nargs="+" ,help="directories of data")
 parser.add_argument("--savepath", help="Path of file to store processed data in")
 
