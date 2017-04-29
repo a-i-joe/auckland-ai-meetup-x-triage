@@ -12,8 +12,8 @@ So far, it only trains on the two smaller datasets. I did load the large DICOM d
 The data has a lot of other issues as well, such as multiple x-ray views(side-on vs front-on) that have incorrect labels in the DICOM file header.
 
 ### Implementation details
-Training was done on a gtx970 with a pentium g4400, and took less than a second per epoch - probably fast enough to run on CPU.
-The model is a very simple, very small convolutional neural net. The first conv layer has 16 7x7 filters convolved with stride 3, the second has 16 3x3 filters, both have ReLU nonlinearities. Output is a single sigmoid unit and dropout is used to prevent overfitting. The CNN has binary cross entropy between its outputs and the targets(normal=0,abnormal=1)  as a loss function and is trained using the [adam](https://arxiv.org/abs/1412.6980) optimizer with a learning rate of 0.001. I spent very little time on hyperparameter optimization so this architecture could easily be improved.
+Training was done on a GTX970 with a pentium G4400, and took less than a second per epoch - probably fast enough to run on CPU.
+The model is a very simple, very small convolutional neural net. The first conv layer has 16 7x7 filters convolved with stride 3, the second has 16 3x3 filters, both have ReLU nonlinearities. Output is a single sigmoid unit and dropout is used to prevent overfitting. The CNN has binary cross entropy between its outputs and the targets(normal=0,abnormal=1)  as a loss function and is trained using the [adam](https://arxiv.org/abs/1412.6980) optimizer with a learning rate of 0.001. I spent very little time on hyperparameter tuning so this architecture could easily be improved.
 
  10x10 fold cross validation was done by splitting all 802 examples into 9 folds of 80 and 1 of 82. Each fold was used once for cross validation while the model trained on the rest of the dataset, and the neural net's weights/biases were initialised to the exact same values for each fold. Validation set ROC and safe set % were recorded for each fold, see k_fold_crossvalidation in util.py for details.
 
@@ -80,5 +80,7 @@ python train.py --datapath SAVEPATH
 - Try a model that incorporates data about age and gender as well as just the xray pixels, see if it helps.
 - Write code to plot [saliency maps/heatmaps](https://arxiv.org/pdf/1312.6034.pdf) next to an xray or other visualization methods to help interpret how model makes predictions
 - Refactor code so it's cleaner/faster/pylint compliant
-- Add a detailed, formal description/discussion of experiments with citations etc to this README.md
-If you would like help getting started with any of these, Soren is happy to meet in person to point you in the right direction and will also be at all future data science club meetings. Thanks!
+- Add a detailed, formal description/discussion of experiments with citations to this README.md
+
+
+If you would like help getting started with any of these, Soren is happy to meet in person to point you in the right direction and will also be at all future data science club meetings. If you want to get up to speed with deep learning, I'd recommend [cs231n](cs231n.github.io) and [course.fast.ai](course.fast.ai). Also, [here](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html) is a tutorial in keras that's highly relevant to what we're doing.
