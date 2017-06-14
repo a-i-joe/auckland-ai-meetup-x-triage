@@ -117,6 +117,7 @@ def plot_crossval_auc(roc_curves):
     plt.title("ROC curves across 10 different validation folds(tiny convnet trained on small datasets)")
     plt.show()
 
+
 def plot_safeset(X,y, model, divisions=None, listSizes=None, tmp_path = '/tmp/params.h5'):
     '''
     NOTE: Input EITHER divisions OR listSizes, NOT BOTH
@@ -142,15 +143,15 @@ def plot_safeset(X,y, model, divisions=None, listSizes=None, tmp_path = '/tmp/pa
 
     safesets = []
 
-    model.saveweights(tmp_path) #to save non relevant weights to 'refresh' keras model each time
+    model.save_weights(tmp_path) #to save non relevant weights to 'refresh' keras model each time
 
     for elt in sizes:
-        Xtrain = X[:(elt*0.9)]
-        ytrain = y[:(elt(0.9))]
-        model.loadweights(tmp_path)
+        Xtrain = X[:int((elt*0.9))]     # 90% of the dataset is for training and the other 10% is for prediction
+        ytrain = y[:int(elt*(0.9))]
+        model.load_weights(tmp_path)
         model.fit(Xtrain, ytrain)
-        preds = model.predict(X[elt*0.9:elt])
-        safesets.append(safeset_percent(preds, y[elt*0.9:elt]))
+        preds = model.predict(X[int(elt*0.9):elt])
+        safesets.append(safeset_percent(preds, y[int(elt*0.9):elt])) #uses previous safeset_percent function
 
     plt.plot(sizes, safesets)
     plt.show()
