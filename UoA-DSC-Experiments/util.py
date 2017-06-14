@@ -116,3 +116,41 @@ def plot_crossval_auc(roc_curves):
     plt.ylabel("True positive rate")
     plt.title("ROC curves across 10 different validation folds(tiny convnet trained on small datasets)")
     plt.show()
+
+def plot_safeset(X,y, model, divisions=None, listSizes=None, tmp_path = '/tmp/params.h5'):
+    '''
+    NOTE: Input EITHER divisions OR listSizes, NOT BOTH
+    :param X: images in a big tensor
+    :param y: targets in a vector
+    :param listSizes: this should be a list of increasing image sizes, eg [1000, 2000..., 8000]
+    where each element of the list is used to train the model
+    :param divisions: provides the number of increasing dataset sizes in the total dataset
+    :param model: the model you are wanting to use to train (designed for Keras)
+    :param tmp_path: this is the temporary path that stores the weights for each model that get wiped
+    '''
+
+    (X,y) = shuffle(X,y)
+
+    if divisions != None:
+        stepSize = len(y)/divisions
+        sizes = [x for x in range(stepSize,len(y),stepSize)]
+    elif listSizes != None:
+        sizes = listSizes
+    else:
+        print("Input EITHER divisions OR listSizes")
+        raise ValueError
+
+    safesets = []
+
+    model.saveweights(tmp_path) #to save non relevant weights to 'refresh' keras model each time
+
+    for elt in sizes:
+        Xtrain = X[:(elt*0.9)]
+        ytrain = y[:(elt(0.9))]
+        model.loadweights(tmp_path)
+        model.fit(Xtrain, ytrain)
+        preds = model.predict(X[elt*0.9:elt])
+        safesets.append(safeset_percent(preds, y[elt*0.9:elt]))
+
+    plt.plot(sizes, safesets)
+    plt.show()
