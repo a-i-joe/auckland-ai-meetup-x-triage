@@ -8,3 +8,4 @@ scikit-learn
 dicom
 keras==2.0.3
 tensorflow
+pillow
