@@ -3,14 +3,6 @@
 To get the ball rolling, here's the code for our experiments so far. It's more a proof of concept to build on than a finished product.
 Includes scripts to preprocess the data and train a (very) basic convolutional neural network to classify x-rays into "normal" or "abnormal", and utils for running cross validation and finding auc.
 
-## Limitations
-So far, it only trains on the two smaller datasets. I did load the large DICOM dataset and the labels from the scraper, but was unable to get the same model to learn anything - performed no differently to random labels. I think this is because either:
-- a) Something is wrong with my code to load data and labels - the functions for loading are still in prepro.py
-- b) Something went wrong with Robin's scraper
-- c) Something is going wrong with the REST API - I did notice the filenames from the API were for .pngs, whereas the data itself was in DICOM - odd.
-
-The data has a lot of other issues as well, such as multiple x-ray views(side-on vs front-on) that have incorrect labels in the DICOM file header.
-
 ### Implementation details
 Training was done on a GTX970 with a pentium G4400, and took less than a second per epoch - probably fast enough to run on CPU.
 The model is a very simple, very small convolutional neural net. The first conv layer has 16 7x7 filters convolved with stride 3, the second has 16 3x3 filters, both have ReLU nonlinearities. Output is a single sigmoid unit and dropout is used to prevent overfitting. The CNN has binary cross entropy between its outputs and the targets(normal=0,abnormal=1)  as a loss function and is trained using the [adam](https://arxiv.org/abs/1412.6980) optimizer with a learning rate of 0.001. I spent very little time on hyperparameter tuning so this architecture could easily be improved.
@@ -62,7 +54,7 @@ python train.py --datapath SAVEPATH
 ```
 
 ## TODO
-- Figure out what I've done wrong with the large dicom datasets labels (priority: highest)
+~~- Figure out what I've done wrong with the large dicom datasets labels (priority: highest)
 - plot safe set % vs dataset size (priority: very high)
 - Test on OSX
 - Test on Windows - might require a few modifications to work
@@ -71,16 +63,22 @@ python train.py --datapath SAVEPATH
 - Write instructions to install dependencies using anaconda or virtualenv, rather than pip
 - Write script to get this all to work on an AWS EC2 instance
 - Modify code for loading labels so that it also loads a list of ages and genders for each image, explore their relationship with model performance
-- Augment the dataset with random skews, shifts, crops and rotations(look up keras' ImageDataGenerator class)
+- Augment the dataset with random skews, shifts, crops and rotations(look up keras' ImageDataGenerator class)~~
 - Add ability to monitor AUC during training (probably using a keras callback)
 - Write keras callback to monitor "safe set" %
-- Write keras callback to save weights that perform best in one of the above metrics
+~~- Write keras callback to save weights that perform best in one of the above metrics~~
 - Try out some different neural net architectures.
 - In particular, try transferring the weights from a neural net pretrained on imagenet. You can find some easy to use pretraine dmodels [here](https://github.com/fchollet/deep-learning-models) (priority: high)
 - Try a model that incorporates data about age and gender as well as just the xray pixels, see if it helps.
-- Write code to plot [saliency maps/heatmaps](https://arxiv.org/pdf/1312.6034.pdf) next to an xray or other visualization methods to help interpret how model makes predictions
-- Refactor code so it's cleaner/faster/pylint compliant
+~~- Write code to plot [saliency maps/heatmaps](https://arxiv.org/pdf/1312.6034.pdf) next to an xray or other visualization methods to help interpret how model makes predictions
+- Refactor code so it's cleaner/faster/pylint compliant~~
 - Add a detailed, formal description/discussion of experiments with citations to this README.md
 
 
 If you would like help getting started with any of these, Soren is happy to meet in person to point you in the right direction and will also be at all future data science club meetings. If you want to get up to speed with deep learning, I'd recommend [cs231n](cs231n.github.io) and [course.fast.ai](course.fast.ai). Also, [here](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html) is a tutorial in keras that's highly relevant to what we're doing.
+
+## Contributors
+Big props to everyone from the Data Science club who helped out with this
+ - [Robin](https://github.com/rasutt) wrote the web scraper to get labels for the large dataset and tested the code in theano+python3
+ - [Max](https://github.com/yichabod) wrote a function to plot the safe set % vs training set size and got the code to run on an EC2 Instance
+ - [Amelia](https://github.com/cordwella) refactored the code to make it PEP-8 compliant.
