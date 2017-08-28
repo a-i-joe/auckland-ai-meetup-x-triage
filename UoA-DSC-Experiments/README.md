@@ -54,24 +54,23 @@ python train.py --datapath SAVEPATH
 ```
 
 ## TODO
-~~- Figure out what I've done wrong with the large dicom datasets labels (priority: highest)
-- plot safe set % vs dataset size (priority: very high)
-- Test on OSX
+- ~~Figure out what I've done wrong with the large dicom datasets labels (priority: highest)~~
+- ~~plot safe set % vs dataset size (priority: very high)~~
+- ~~Test on OSX~~
 - Test on Windows - might require a few modifications to work
-- Test with theano backend
-- Test with python3
+- ~~Test with theano backend~~
+- ~~Test with python3~~
 - Write instructions to install dependencies using anaconda or virtualenv, rather than pip
-- Write script to get this all to work on an AWS EC2 instance
-- Modify code for loading labels so that it also loads a list of ages and genders for each image, explore their relationship with model performance
-- Augment the dataset with random skews, shifts, crops and rotations(look up keras' ImageDataGenerator class)~~
+- ~~Modify code for loading labels so that it also loads a list of ages and genders for each image, explore their relationship with model performance~~
+- ~~Augment the dataset with random skews, shifts, crops and rotations(look up keras' ImageDataGenerator class)~~
 - Add ability to monitor AUC during training (probably using a keras callback)
 - Write keras callback to monitor "safe set" %
 ~~- Write keras callback to save weights that perform best in one of the above metrics~~
 - Try out some different neural net architectures.
 - In particular, try transferring the weights from a neural net pretrained on imagenet. You can find some easy to use pretraine dmodels [here](https://github.com/fchollet/deep-learning-models) (priority: high)
 - Try a model that incorporates data about age and gender as well as just the xray pixels, see if it helps.
-~~- Write code to plot [saliency maps/heatmaps](https://arxiv.org/pdf/1312.6034.pdf) next to an xray or other visualization methods to help interpret how model makes predictions
-- Refactor code so it's cleaner/faster/pylint compliant~~
+- ~~Write code to plot [saliency maps/heatmaps](https://arxiv.org/pdf/1312.6034.pdf) next to an xray or other visualization methods to help interpret how model makes predictions~~
+- ~~Refactor code so it's cleaner/faster/pylint compliant~~
 - Add a detailed, formal description/discussion of experiments with citations to this README.md
 
 
