@@ -48,7 +48,7 @@ First, download and unzip the 2 smaller datasets:
 
 Run the script to preprocesses the data, storing the preproccesed data in SAVEPATH. --res allows you to optionally set the resolution of data and defaults to (256,256)
 ```bash
-python prepare_smalldata.py --dir /path/to/ChinaSet_AllFiles /path/to/MontgomerySet --savepath SAVEPATH --res 256 256
+python prepare_smallsets.py --dir /path/to/ChinaSet_AllFiles /path/to/MontgomerySet --savepath SAVEPATH --res 256 256
 ```
 Now the data is pickled in a tuple of a ndarray of images and a list of labels, ready for a neural net. To load it into python, simply use:
 ```python
