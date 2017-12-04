@@ -6,6 +6,9 @@ from keras.layers import Conv2D
 from scipy.misc import imresize
 import matplotlib.pyplot as plt
 
+def hide_ticks(ax):
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
 
 def get_saliency(image, model):
     """Returns a saliency map with same shape as image. """
@@ -28,11 +31,9 @@ def plot_saliency(image, model):
     plt.ion()
     fig, (ax1, ax2) = plt.subplots(2)
     ax1.imshow(np.squeeze(saliency), cmap="viridis")
-    ax1.set_xticklabels([])
-    ax1.set_yticklabels([])
+    hide_ticks(ax1)
     ax2.imshow(np.squeeze(image), cmap="gray")
-    ax2.set_xticklabels([])
-    ax2.set_yticklabels([])
+    hide_ticks(ax2)
     plt.pause(0.01)
     plt.show()
 
@@ -54,6 +55,7 @@ def get_gradcam(image, model, layer_name):
 
 
 def transparent_cmap(cmap, alpha, N=255):
+    """Takes a matplotlib cmap and makes it transparent """
     mycmap = cmap
     mycmap._init()
     mycmap._lut[:, -1] = np.linspace(0, 0.8, N + 4)
@@ -70,8 +72,7 @@ def plot_heatmap(image, model, layer_name, ax, cmap=plt.cm.jet, alpha=0.6):
         fig, ax = plt.subplots(1, 1)
     ax.imshow(image, cmap="gray")
     ax.imshow(np.squeeze(heatmap), cmap=heat_cmap)
-    ax.set_xticklabels([])
-    ax.set_yticklabels([])
+    hide_ticks(ax)
 
 
 def plot_network(images, model, labels=None):
